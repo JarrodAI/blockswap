@@ -11,12 +11,27 @@ if ! command -v mmdc >/dev/null 2>&1; then
   exit 1
 fi
 
+echo "Using mmdc at: $(command -v mmdc)"
+echo "mmdc version: $(mmdc --version || echo unknown)"
+
 cd "$DIAGRAM_DIR"
 
-for f in *.mmd; do
+shopt -s nullglob
+files=( *.mmd )
+if [ ${#files[@]} -eq 0 ]; then
+  echo "No .mmd files found in $DIAGRAM_DIR"
+  exit 0
+fi
+
+echo "Found ${#files[@]} .mmd files: ${files[*]}"
+
+for f in "${files[@]}"; do
   base="${f%.mmd}"
   echo "Rendering $f -> ${base}.png"
-  mmdc -i "$f" -o "${base}.png" -b transparent
+  mmdc -i "$f" -o "${base}.png" -b transparent || {
+    echo "Failed to render $f" >&2
+    exit 1
+  }
   # Uncomment to also render SVG
   # mmdc -i "$f" -o "${base}.svg" -b transparent
 done

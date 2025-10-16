@@ -1,0 +1,21 @@
+sequenceDiagram
+  participant P as Proposers (VRF-selected)
+  participant V as Validators
+  participant N as Network
+
+  rect rgb(230,230,250)
+  Note over P,V: Phase 1 (0-1s): Proposal
+  P->>N: broadcast block proposals
+  end
+
+  rect rgb(250,240,230)
+  Note over V,P: Phase 2 (1-1.5s): Swap
+  V->>N: broadcast better block if quality > best +5%
+  N->>V: propagate swap proposals (<=3 per slot)
+  end
+
+  rect rgb(235,250,235)
+  Note over V: Phase 3 (1.5-2s): Finalization
+  V->>V: BFT vote (BLS aggregated)
+  V->>N: commit best block
+  end

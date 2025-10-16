@@ -1,0 +1,16 @@
+sequenceDiagram
+  participant U1 as User on BTC
+  participant BTC as Bitcoin
+  participant R as Relayer
+  participant BS as BlockSwap
+  participant U2 as User on BSWP
+
+  U1->>BTC: create HTLC(hash, timelock)
+  R->>BTC: observe tx and wait confirmations
+  BTC-->>R: confirmations reached
+  R->>BS: submit proof (header+merkle)
+  BS-->>U2: event: HTLC observed
+  U2->>BS: create matching HTLC
+  U1->>BS: reveal secret to claim
+  BS-->>U2: claim matching HTLC with secret
+  Note over U1,U2: Refunds if timeouts hit

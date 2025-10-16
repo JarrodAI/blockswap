@@ -1,0 +1,12 @@
+sequenceDiagram
+  participant M as Maker
+  participant T as Taker
+  participant ME as Matching Engine
+  participant CONS as Consensus
+
+  M->>ME: place order (offer X for Y)
+  T->>ME: take order
+  ME->>CONS: include swap txs in block
+  CONS-->>ME: block finalized
+  ME-->>M: assets transferred
+  ME-->>T: assets transferred

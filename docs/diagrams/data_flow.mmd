@@ -1,0 +1,14 @@
+sequenceDiagram
+  participant U as User/Wallet
+  participant RPC as RPC Server
+  participant MEM as Mempool
+  participant CONS as Consensus
+  participant ST as State/DB
+
+  U->>RPC: sendTransaction(tx)
+  RPC->>MEM: validate + enqueue
+  MEM-->>RPC: tx accepted
+  CONS->>MEM: select ordered tx set
+  CONS->>CONS: propose/swap/finalize
+  CONS->>ST: commit block + state
+  RPC-->>U: tx status + receipt

@@ -1,0 +1,38 @@
+name: Export Mermaid Diagrams
+
+on:
+  workflow_dispatch: {}
+  push:
+    paths:
+      - 'docs/diagrams/*.mmd'
+      - 'scripts/export-diagrams.sh'
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install mermaid-cli
+        run: npm install -g @mermaid-js/mermaid-cli@9
+
+      - name: Render diagrams
+        run: |
+          chmod +x scripts/export-diagrams.sh
+          ./scripts/export-diagrams.sh
+
+      - name: Commit and push generated images
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: 'blockswap-bot'
+          author_email: 'noreply@blockswap'
+          message: 'chore: export diagrams (generated PNGs)'
+          add: 'docs/diagrams/*.png'

@@ -1,0 +1,11 @@
+sequenceDiagram
+  participant LC as Light Client
+  participant EXT as External Chain
+  participant BS as BlockSwap
+
+  LC->>EXT: fetch header N
+  LC->>EXT: fetch header N-1..N-k
+  EXT-->>LC: headers
+  LC->>LC: verify PoW/PoS finality
+  LC-->>BS: provide (header, proof)
+  BS->>BS: validate header & store anchor

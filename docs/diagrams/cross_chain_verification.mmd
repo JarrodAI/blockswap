@@ -1,0 +1,15 @@
+sequenceDiagram
+  participant U as User
+  participant R as Relayer
+  participant L as Light Client
+  participant RPC as BlockSwap RPC
+  participant CONS as Consensus
+
+  U->>R: request proof(txHash, chainId)
+  R->>L: fetch header+proof
+  L-->>R: returns (header, proof, txReceipt)
+  R->>RPC: submitProof(chainId, header, proof, txReceipt)
+  RPC->>CONS: verifyProof(header, proof, txReceipt)
+  CONS-->>RPC: valid/invalid
+  RPC-->>R: result
+  RPC-->>U: event emitted (on-chain)

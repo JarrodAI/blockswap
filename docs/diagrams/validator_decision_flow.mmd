@@ -1,0 +1,10 @@
+flowchart TD
+  A[Receive Proposals] --> B{Evaluate Quality Score}
+  B -->|> best+5%| C[Propose Swap Block]
+  B -->|<= best| D[Do Not Swap]
+  C --> E[Broadcast Swap Proposal]
+  D --> F[Vote on Best Block]
+  E --> F
+  F --> G{Quorum?}
+  G -->|>= 2/3| H[Finalize Block]
+  G -->|< 2/3| I[Timeout -> Next Slot]

@@ -1,0 +1,13 @@
+sequenceDiagram
+  participant U as User
+  participant BTC as Bitcoin
+  participant R as Relayer
+  participant BS as BlockSwap
+
+  U->>BTC: send BTC to HTLC(addr, hash, timelock)
+  R->>BTC: monitor mempool/confirmations
+  BTC-->>R: confirmations reached
+  R->>BS: submitAnchor(header, merkleProof, tx)
+  BS-->>R: anchor accepted
+  U->>BS: reveal preimage to claim tokens
+  BS-->>U: mints wrapped BTC or credits swap

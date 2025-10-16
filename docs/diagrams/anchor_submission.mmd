@@ -1,0 +1,10 @@
+sequenceDiagram
+  participant R as Relayer
+  participant RPC as BlockSwap RPC
+  participant CONS as Consensus
+  participant ST as State
+
+  R->>RPC: submitAnchor(chainId, header, metadata, proof, sig)
+  RPC->>CONS: validate header + finality
+  CONS->>ST: store anchor (chainId,height)->hash
+  RPC-->>R: anchor accepted (fee charged)

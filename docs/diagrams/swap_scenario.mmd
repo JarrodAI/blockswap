@@ -1,0 +1,10 @@
+sequenceDiagram
+  participant P as Proposer A
+  participant Q as Proposer B
+  participant V as Validators
+
+  P->>V: Proposal A (quality=0.82)
+  Q->>V: Proposal B (quality=0.87)
+  Note over V: Swap window: B beats A (>5%)
+  V->>V: Adopt Proposal B
+  V->>V: Finalize B with 2/3+ votes

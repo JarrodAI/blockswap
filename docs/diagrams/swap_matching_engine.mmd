@@ -1,0 +1,12 @@
+flowchart TD
+  A[New Order] --> B{Order Type}
+  B -- Market --> C[Find best counter orders]
+  B -- Limit --> D[Check price conditions]
+  D -->|OK| C
+  D -->|No| E[Queue in Order Book]
+  C --> F{Match Size}
+  F -- Full --> G[Execute Trade]
+  F -- Partial --> H[Partial Fill + Update Remainder]
+  G --> I[Settle & Emit Events]
+  H --> I
+  I --> J[Fees: Validators/LPs/Burn]

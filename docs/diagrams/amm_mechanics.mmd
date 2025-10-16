@@ -1,0 +1,14 @@
+graph TD
+  A[Pool: TokenX-TokenY]
+  B[Add Liquidity]
+  C[Remove Liquidity]
+  D[Swap X->Y]
+  E[Swap Y->X]
+  F[k = x*y invariant]
+  G[Fees -> LPs + Validators + Burn]
+
+  B --> A
+  C --> A
+  D --> F
+  E --> F
+  A --> G

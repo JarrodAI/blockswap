@@ -1,0 +1,9 @@
+stateDiagram-v2
+  [*] --> Idle
+  Idle --> Proposal: slot start
+  Proposal --> Swap: proposals collected
+  Swap --> Finalize: best block selected or swapped
+  Finalize --> Idle: block committed
+  Proposal --> Idle: timeout/no quorum
+  Swap --> Idle: timeout/no quorum
+  Finalize --> Proposal: next slot

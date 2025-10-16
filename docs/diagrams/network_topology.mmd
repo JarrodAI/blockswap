@@ -1,0 +1,22 @@
+flowchart LR
+  subgraph Region1[NA]
+    V1[Validator 1]
+    F1[Full Node 1]
+  end
+  subgraph Region2[EU]
+    V2[Validator 2]
+    F2[Full Node 2]
+  end
+  subgraph Region3[AS]
+    V3[Validator 3]
+    F3[Full Node 3]
+  end
+  L1[Light Client]
+  A1[Archive Node]
+
+  V1 --- V2 --- V3
+  V1 --- F1
+  V2 --- F2
+  V3 --- F3
+  F1 --- A1
+  L1 --> F2

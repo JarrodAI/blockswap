@@ -1,0 +1,11 @@
+sequenceDiagram
+  participant I as Initiator
+  participant C as Counterparty
+  participant BS as BlockSwap
+
+  I->>BS: createHTLC(hash, timelock)
+  C->>BS: fund/counter HTLC (if needed)
+  I->>BS: reveal(secret)
+  BS-->>C: event: secret revealed
+  C->>BS: claim with secret
+  Note over I,BS: If timeout expires without reveal -> refund to Initiator

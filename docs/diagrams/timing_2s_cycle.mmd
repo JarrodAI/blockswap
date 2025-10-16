@@ -1,0 +1,11 @@
+sequenceDiagram
+  participant S as Slot
+  participant V as Validators
+
+  Note over S: 0s
+  S->>V: Proposal Window opens (0-1s)
+  Note over S: 1s
+  V-->>V: Evaluate proposals / potential swaps (1-1.5s)
+  Note over S: 1.5s
+  V-->>V: Finalize best block (BFT vote) (1.5-2s)
+  Note over S: 2s -> Next slot

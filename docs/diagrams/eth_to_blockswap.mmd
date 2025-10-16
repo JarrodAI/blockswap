@@ -1,0 +1,13 @@
+sequenceDiagram
+  participant U as User
+  participant ETH as Ethereum
+  participant R as Relayer
+  participant BS as BlockSwap
+
+  U->>ETH: lock tokens in HTLC(hash, timelock)
+  R->>ETH: observe event logs
+  ETH-->>R: inclusion proof available
+  R->>BS: submitProof(header, accountProof, receiptProof)
+  BS-->>R: proof verified
+  U->>BS: claim with preimage
+  BS-->>U: credits/mints wrapped ETH or completes swap

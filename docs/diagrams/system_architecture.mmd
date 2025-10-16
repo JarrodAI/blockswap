@@ -1,0 +1,27 @@
+flowchart TB
+  subgraph Clients
+    Wallet[Web/Mobile Wallet]
+    Explorer[Block Explorer]
+    SDKs[JS/Python/Rust/Go SDKs]
+  end
+
+  subgraph Node[BlockSwap Node]
+    RPC[(RPC HTTP/WS)]
+    P2P[(libp2p)]
+    Consensus[Block Swap Consensus]
+    Mempool[Mempool]
+    Storage[(RocksDB)]
+    CrossChain[Cross-Chain Light Clients]
+    VM[WASM Runtime]
+  end
+
+  Clients -->|JSON-RPC| RPC
+  Explorer -->|REST/WS| RPC
+  RPC --> Consensus
+  RPC --> Mempool
+  Consensus --> P2P
+  Mempool --> P2P
+  Consensus --> Storage
+  VM --> Storage
+  CrossChain --> Storage
+  P2P --- P2P

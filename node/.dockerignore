@@ -1,0 +1,12 @@
+target/
+**/*.log
+**/.DS_Store
+.git
+.gitignore
+**/*.md
+**/*.mmd
+**/*.png
+**/*.svg
+**/*.yml
+**/*.yaml
+**/*.lock

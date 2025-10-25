@@ -1,0 +1,4 @@
+p2p_port = 30335
+rpc_http_port = 29933
+rpc_ws_port = 29944
+db_path = "./.blockswap/testnet-data"

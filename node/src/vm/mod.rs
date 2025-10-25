@@ -1,2 +1,2 @@
-pub mod wasm_runtime {}
-pub mod evm {}
+pub mod wasm_runtime;
+pub mod evm;

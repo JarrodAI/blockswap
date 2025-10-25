@@ -9,6 +9,7 @@ mod storage;
 mod mempool;
 mod vm;
 mod rpc;
+mod utils;
 
 use anyhow::Result;
 use tracing::{info, Level};
@@ -17,9 +18,7 @@ use tracing_subscriber::EnvFilter;
 #[tokio::main]
 async fn main() -> Result<()> {
     // Init logging
-    tracing_subscriber::fmt()
-        .with_env_filter(EnvFilter::from_default_env().add_directive(Level::INFO.into()))
-        .init();
+    utils::logger::init();
 
     info!("starting BlockSwap node (scaffold)");
 

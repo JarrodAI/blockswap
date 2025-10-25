@@ -1,0 +1,38 @@
+[package]
+name = "blockswap-node"
+version = "0.1.0"
+authors = ["BlockSwap Contributors"]
+edition = "2021"
+license = "MIT"
+description = "BlockSwap core node (prototype scaffold)"
+
+[dependencies]
+anyhow = "1"
+thiserror = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "signal"] }
+bytes = "1"
+libp2p = { version = "0.54", default-features = false, features = ["tcp", "dns", "noise", "yamux", "gossipsub", "kad", "autonat", "identify"] }
+rocksdb = { version = "0.21", default-features = false, features = ["lz4"] }
+hex = "0.4"
+blake3 = "1"
+ed25519-dalek = { version = "2", features = ["rand_core"] }
+rand = "0.8"
+async-trait = "0.1"
+axum = { version = "0.7", features = ["macros"] }
+hyper = { version = "1", features = ["server"] }
+
+[dev-dependencies]
+assert_cmd = "2"
+criterion = { version = "0.5", features = ["html_reports"] }
+
+[[bench]]
+name = "performance"
+harness = false
+
+[[bench]]
+name = "consensus"
+harness = false

@@ -1,0 +1,9 @@
+p2p_port = 30334
+rpc_http_port = 19933
+rpc_ws_port = 19944
+db_path = "./.blockswap/dev-data"
+# Dev config
+p2p_port = 30334
+rpc_http_port = 19933
+rpc_ws_port = 19944
+db_path = "./.blockswap/dev-data"

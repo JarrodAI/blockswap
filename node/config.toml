@@ -1,0 +1,9 @@
+p2p_port = 30333
+rpc_http_port = 9933
+rpc_ws_port = 9944
+db_path = "./.blockswap/data"
+# Common config template
+p2p_port = 30333
+rpc_http_port = 9933
+rpc_ws_port = 9944
+db_path = "./.blockswap/data"

@@ -1375,5 +1375,12 @@ This master blueprint is complete when:
 - Phase 2: Atomic Swap protocol completed in docs/ATOMIC_SWAPS.md (HTLC, matching engine, AMM, cross-chain, fees, diagrams).
 
 - Phase 2: Added Mermaid diagrams under docs/diagrams/: system_architecture.mmd, network_topology.mmd, data_flow.mmd, consensus_flow.mmd, swap_scenario.mmd, anchor_submission.mmd, cross_chain_verification.mmd, btc_to_blockswap.mmd, eth_to_blockswap.mmd, amm_mechanics.mmd, consensus_state_machine.mmd, light_client_verification.mmd, htlc_lifecycle.mmd, same_chain_swap.mmd, cross_chain_swap.mmd, swap_matching_engine.mmd. Linked diagram sources from docs and added scripts/export-diagrams.sh for PNG generation.
+    - CI: Added `.github/workflows/export-diagrams.yml` to auto-render and commit PNGs on changes (or manual trigger). Phase 2 diagram set is complete.
+
+- Phase 3: Repository scaffolding in progress/completed:
+    - Root files added: `.editorconfig`, `.gitattributes`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `CHANGELOG.md`.
+    - Rust node expanded: added file-based modules for blockchain and consensus; introduced utils (`logger`, `time`, `serialization`); expanded `network` (p2p, gossip, sync), `mempool` (mempool, validation, prioritization), `vm` (wasm_runtime, evm), and `rpc` (server, handlers) stubs; configs added for dev/testnet/mainnet; node README added.
+    - Docker: improved `node/.dockerignore` to reduce Docker build context.
+    - Tests/Benches: added placeholder tests and criterion benches; build and tests passing.
 
 ---

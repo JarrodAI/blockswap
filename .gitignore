@@ -1,0 +1,16 @@
+# Rust
+/target
+node/target
+**/*.rs.bk
+
+# Go
+cli/bin
+
+# Node data
+.blockswap/
+
+# OS/Editor
+.DS_Store
+*.swp
+.idea/
+.vscode/
